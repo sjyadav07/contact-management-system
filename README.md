@@ -1,9 +1,12 @@
-Contact Management System
-This is a simple Contact Management System built with Node.js, Express.js, and MongoDB Atlas.
+# Contact Management System  
 
-✅ Add, view, edit, and delete contacts easily
-✅ Data stored securely in MongoDB Atlas
-✅ Deployed on Render
+This is a simple **Contact Management System** built with **Node.js, Express.js, and MongoDB Atlas**.  
 
-🔗 Live Demo: https://contact-management-system-28ua.onrender.com
+## ✅ Features  
+- Add, view, edit, and delete contacts easily  
+- Data stored securely in **MongoDB Atlas**  
+- Deployed on **Render**  
+
+## 🔗 Live Demo  
+👉 [https://contact-management-system-28ua.onrender.com](https://contact-management-system-28ua.onrender.com)  
 
