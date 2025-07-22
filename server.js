@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ MongoDB Connect
-mongoose.connect('mongodb://127.0.0.1:27017/contactdb', {
+mongoose.connect("mongodb+srv://admin:Sachin%40121@my-first-cluster.83h4vgy.mongodb.net/contactdb?retryWrites=true&w=majority&appName=My-First-Cluster", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
