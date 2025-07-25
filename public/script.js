@@ -12,7 +12,7 @@ const cancelEditBtn = document.getElementById('cancelEdit');
 let editingId = null;
 let allContacts = [];
 
-// ✅ Fetch contacts with sort
+// Fetch contacts from database and sort karta hai agar tumne choose kiya hai sort options ussi order me
 async function loadContacts(sort = '') {
     const res = await fetch(`/api/contacts${sort ? `?sort=${sort}` : ''}`);
     const contacts = await res.json();
@@ -20,7 +20,7 @@ async function loadContacts(sort = '') {
     displayContacts(contacts);
 }
 
-// ✅ Display contacts
+// Display contacts detail
 function displayContacts(contacts) {
     contactList.innerHTML = '';
     contacts.forEach(c => {
@@ -40,7 +40,7 @@ function displayContacts(contacts) {
     });
 }
 
-// ✅ Add/Update Contact
+//Add or Update Contact
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const newContact = {
@@ -80,7 +80,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// ✅ Edit Contact
+// Edit Contact
 function editContact(id) {
     const c = allContacts.find(c => c._id === id);
     nameInput.value = c.name;
@@ -92,7 +92,7 @@ function editContact(id) {
     formTitle.textContent = "Edit Contact";
 }
 
-// ✅ Cancel Edit
+// Cancel Edit
 cancelEditBtn.addEventListener('click', () => {
     editingId = null;
     form.reset();
@@ -101,7 +101,7 @@ cancelEditBtn.addEventListener('click', () => {
     formTitle.textContent = "Add New Contact";
 });
 
-// ✅ Delete Contact with Confirmation
+// Delete Contact with your Confirmation
 function deleteContact(id) {
     Swal.fire({
         title: "Delete Contact?",
@@ -118,7 +118,7 @@ function deleteContact(id) {
     });
 }
 
-// ✅ Search Filter
+// Search your contact
 searchInput.addEventListener('input', function (e) {
     const term = e.target.value.toLowerCase();
     const filtered = allContacts.filter(c =>
@@ -129,10 +129,10 @@ searchInput.addEventListener('input', function (e) {
     displayContacts(filtered);
 });
 
-// ✅ Sort Contacts
+//According to you Sort your Contacts
 sortSelect.addEventListener('change', function () {
     loadContacts(this.value);
 });
 
-// Initial load
+// Display contacts automatically when the page loaded
 loadContacts();
