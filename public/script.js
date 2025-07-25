@@ -51,14 +51,14 @@ form.addEventListener('submit', async (e) => {
 
     let res;
     if (editingId) {
-        // Update
+        
         res = await fetch(`/api/contacts/${editingId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newContact)
         });
     } else {
-        // Add
+       
         res = await fetch('/api/contacts', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
