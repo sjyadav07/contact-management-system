@@ -1,7 +1,7 @@
 {
   "name": "ip_project",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a simple **Contact Management System** built with **Node.js, Express.js, and MongoDB Atlas**.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,10 +15,19 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "mongoose": "^8.16.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjyadav07/contact-management-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sjyadav07/contact-management-system/issues"
+  },
+  "homepage": "https://github.com/sjyadav07/contact-management-system#readme"
 }

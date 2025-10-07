@@ -1,8 +1,229 @@
+/* General Body Styling */
+html,
 body {
-    background-color: rgb(66, 49, 143);
-    transition: 0.3s ease-in-out;
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.4s ease;
+}
+
+/* ======================
+   STAR BACKGROUND LAYERS
+========================= */
+#stars,
+#stars2,
+#stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    z-index: 0;
+    background: transparent;
+    pointer-events: none;
+}
+
+#stars {
+    width: 6px;
+    height: 6px;
+    box-shadow: 50px 150px white, 120px 300px white, 200px 500px white, 320px 100px white,
+        400px 700px white, 600px 300px white, 700px 200px white, 800px 800px white,
+        900px 600px white, 1000px 400px white, 1100px 100px white, 1200px 600px white,
+        1300px 500px white, 1400px 800px white, 1500px 300px white, 1600px 700px white;
+    animation: animStar 50s linear infinite;
+    filter: drop-shadow(0 0 4px white);
+}
+
+#stars:after {
+    content: "";
+    position: absolute;
+    top: 2000px;
+    width: 6px;
+    height: 6px;
+    box-shadow: inherit;
+}
+
+#stars2 {
+    width: 7px;
+    height: 7px;
+    box-shadow:
+        1000px 4000px #fff, 700px 300px #ffddee, 1100px 700px #aaffaa,
+        1500px 600px #ffaaaa, 1800px 200px #ffaadd, 1900px 900px #ffddaa,
+        1400px 1200px #fff, 600px 1100px #ccffcc, 300px 1300px #ffcccc;
+    animation: animStar 100s linear infinite;
+    filter: drop-shadow(0 0 5px #aaddff);
+}
+
+#stars2:after {
+    content: "";
+    position: absolute;
+    top: 2000px;
+    width: 7px;
+    height: 7px;
+    box-shadow: inherit;
+}
+
+#stars3 {
+    width: 8px;
+    height: 8px;
+    box-shadow: 300px 700px white, 500px 900px #ffddee, 700px 1000px #aaddff,
+        900px 1200px white, 1100px 1400px #ffaadd, 1300px 1600px white;
+    animation: animStar 150s linear infinite;
+    filter: drop-shadow(0 0 8px #ffddff);
+}
+
+#stars3:after {
+    content: "";
+    position: absolute;
+    top: 2000px;
+    width: 8px;
+    height: 8px;
+    box-shadow: inherit;
+}
+
+@keyframes animStar {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-2000px);
+    }
+}
+
+/* ======================
+   LIGHT MODE DEFAULT
+========================= */
+body {
+    color: #1e1e1e;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #4f46e5;
+    font-weight: 600;
 }
 
 .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+}
+
+.form-control,
+.form-select {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    color: #1e1e1e;
     border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+}
+
+.form-control::placeholder {
+    color: #5f6368;
+}
+
+.list-group-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.list-group-item strong {
+    color: #1e1e1e;
+    /* color: #938f8f; */
+}
+
+.list-group-item small {
+    color: #5f6368;
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* ======================
+   DARK MODE TOGGLE
+========================= */
+body.dark-mode {
+    background-color: #1e1e2e;
+    color: #f1f5f9;
+}
+
+.dark-mode .card {
+    background-color: #2a2a40;
+    color: #f1f5f9;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4 {
+    color: #6366f1;
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: #363654;
+    color: #f1f5f9;
+    border: 1px solid #4b4b6b;
+}
+
+.dark-mode .form-control::placeholder {
+    color: #cbd5e1;
+}
+
+.dark-mode #contactList li {
+    color: white;
+}
+
+
+.dark-mode .list-group-item {
+    background-color: #2a2a40;
+    border: 1px solid #44445f;
+    color: #f1f5f9;
+    /* color: #1e1e1e; */
+}
+
+.dark-mode .list-group-item strong {
+    color: #fff;
+}
+
+.dark-mode .list-group-item small {
+    color: #aab3c5;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    #head-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .form-check {
+        align-self: flex-end;
+    }
+
+    #search {
+        width: 100% !important;
+    }
+
+    #sort,
+    #export {
+        width: 100%;
+    }
 }

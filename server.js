@@ -11,17 +11,19 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('dotenv').config(); // Add this line at the top
 // Connection with MongoDB
-mongoose.connect("mongodb+srv://admin:Sachin%40121@my-first-cluster.83h4vgy.mongodb.net/contactdb?retryWrites=true&w=majority&appName=My-First-Cluster", {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    .then(() => console.log('MongoDB Connected'))
+    .then(() => console.log('✅ MongoDB Connected'))
     .catch(err => console.log('❌ MongoDB Error:', err));
 
 // This defines how a Contact will be stored in MongoDB.
 const ContactSchema = new mongoose.Schema({
-    name: String,
+    fname: String,
+    lname: String,
     email: { type: String, unique: true },
     phone: String,
     createdAt: { type: Date, default: Date.now }
@@ -34,8 +36,8 @@ app.get('/api/contacts', async (req, res) => {
     let { sort } = req.query;
     let sortOption = {};
 
-    if (sort === "nameAsc") sortOption = { name: 1 };
-    if (sort === "nameDesc") sortOption = { name: -1 };
+    if (sort === "nameAsc") sortOption = { fname: 1, lname: 1 };
+    if (sort === "nameDesc") sortOption = { fname: -1, lname: -1 };
     if (sort === "recent") sortOption = { createdAt: -1 };
 
     const contacts = await Contact.find().sort(sortOption);
@@ -44,7 +46,7 @@ app.get('/api/contacts', async (req, res) => {
 
 // Add a new contact to MongoDB and also checks for duplicate email before saving
 app.post('/api/contacts', async (req, res) => {
-    const { name, email, phone } = req.body;
+    const { fname, lname, email, phone } = req.body;
 
     // Check if the email format is valid (for ex:- name@email.com)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,15 +56,15 @@ app.post('/api/contacts', async (req, res) => {
     const exists = await Contact.findOne({ email });
     if (exists) return res.status(400).json({ error: "Email already exists!" });
 
-    const newContact = new Contact({ name, email, phone });
+    const newContact = new Contact({ fname, lname, email, phone });
     await newContact.save();
     res.json({ message: 'Contact Added', contact: newContact });
 });
 
 // Update or edit an existing contact in the database using its ID
 app.put('/api/contacts/:id', async (req, res) => {
-    const { name, email, phone } = req.body;
-    const updated = await Contact.findByIdAndUpdate(req.params.id, { name, email, phone }, { new: true });
+    const { fname, lname, email, phone } = req.body;
+    const updated = await Contact.findByIdAndUpdate(req.params.id, { fname, lname, email, phone }, { new: true });
     res.json({ message: '✏️ Contact Updated', contact: updated });
 });
 
